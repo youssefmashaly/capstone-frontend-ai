@@ -1,3 +1,5 @@
+import { RecipeCard } from './RecipeCard.tsx';
+import { useFavorites } from '../hooks/useFavorites.ts';
 import type { Meal } from '../types/meal.ts';
 
 type RecipeListProps = {
@@ -6,6 +8,16 @@ type RecipeListProps = {
 };
 
 export function RecipeList({ recipes, searchedQuery = null }: RecipeListProps) {
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+  const handleToggleFavorite = (id: string) => {
+    if (isFavorite(id)) {
+      removeFavorite(id);
+    } else {
+      addFavorite(id);
+    }
+  };
+
   if (recipes.length === 0) {
     if (searchedQuery) {
       return (
@@ -21,15 +33,12 @@ export function RecipeList({ recipes, searchedQuery = null }: RecipeListProps) {
   return (
     <ul className="recipe-list">
       {recipes.map((recipe) => (
-        <li key={recipe.idMeal} className="recipe-card">
-          <img
-            className="recipe-card__image"
-            src={recipe.strMealThumb}
-            alt={recipe.strMeal}
-            loading="lazy"
-          />
-          <h2 className="recipe-card__title">{recipe.strMeal}</h2>
-        </li>
+        <RecipeCard
+          key={recipe.idMeal}
+          recipe={recipe}
+          isFavorite={isFavorite(recipe.idMeal)}
+          onToggleFavorite={handleToggleFavorite}
+        />
       ))}
     </ul>
   );

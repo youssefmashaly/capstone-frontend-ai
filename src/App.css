@@ -86,11 +86,41 @@
   box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
 }
 
+.recipe-card__media {
+  position: relative;
+}
+
 .recipe-card__image {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+.recipe-card__favorite {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.65rem;
+  border: none;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 92%);
+  color: #444;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 15%);
+}
+
+.recipe-card__favorite--active {
+  color: #d32f2f;
+}
+
+.recipe-card__favorite-label {
+  font-size: 0.75rem;
 }
 
 .recipe-card__title {
