@@ -28,7 +28,6 @@ export function SearchBar({ onSearch, loading = false }: SearchBarProps) {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         aria-label="Recipe search"
-        aria-describedby={isQueryEmpty ? 'search-bar-hint' : undefined}
       />
       <button
         type="submit"
@@ -37,11 +36,6 @@ export function SearchBar({ onSearch, loading = false }: SearchBarProps) {
       >
         {loading ? 'Searching...' : 'Search'}
       </button>
-      {isQueryEmpty && (
-        <p id="search-bar-hint" className="search-bar__hint">
-          Enter a search term to find recipes.
-        </p>
-      )}
     </form>
   );
 }

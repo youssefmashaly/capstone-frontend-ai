@@ -30,15 +30,7 @@
 
 .search-bar {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.75rem;
-}
-
-.search-bar__hint {
-  flex-basis: 100%;
-  margin: 0;
-  color: #666;
-  font-size: 0.9rem;
 }
 
 .search-bar__input {
