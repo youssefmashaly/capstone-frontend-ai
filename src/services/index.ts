@@ -1,1 +1,1 @@
-export { searchMeals } from './mealApi.ts';
+export { getMealById, searchMeals } from './mealApi.ts';

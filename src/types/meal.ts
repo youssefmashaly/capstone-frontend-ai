@@ -49,3 +49,28 @@ export type Meal = {
 export type MealSearchResponse = {
   meals: Meal[] | null;
 };
+
+export type MealIngredient = {
+  ingredient: string;
+  measure: string;
+};
+
+export function getMealIngredients(meal: Meal): MealIngredient[] {
+  const ingredients: MealIngredient[] = [];
+
+  for (let index = 1; index <= 20; index += 1) {
+    const ingredientKey = `strIngredient${index}` as keyof Meal;
+    const measureKey = `strMeasure${index}` as keyof Meal;
+    const ingredient = meal[ingredientKey];
+    const measure = meal[measureKey];
+
+    if (typeof ingredient === 'string' && ingredient.trim()) {
+      ingredients.push({
+        ingredient: ingredient.trim(),
+        measure: typeof measure === 'string' ? measure.trim() : '',
+      });
+    }
+  }
+
+  return ingredients;
+}
