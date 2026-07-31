@@ -2,10 +2,19 @@ import type { Meal } from '../types/meal.ts';
 
 type RecipeListProps = {
   recipes: Meal[];
+  searchedQuery?: string | null;
 };
 
-export function RecipeList({ recipes }: RecipeListProps) {
+export function RecipeList({ recipes, searchedQuery = null }: RecipeListProps) {
   if (recipes.length === 0) {
+    if (searchedQuery) {
+      return (
+        <p className="recipe-list__empty">
+          No recipes found for &lsquo;{searchedQuery}&rsquo;
+        </p>
+      );
+    }
+
     return null;
   }
 

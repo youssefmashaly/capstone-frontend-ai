@@ -3,7 +3,8 @@ import { useRecipes } from './hooks/useRecipes.ts';
 import './App.css';
 
 function App() {
-  const { results, loading, error, search } = useRecipes();
+  const { results, loading, error, lastQuery, hasSearched, search } =
+    useRecipes();
 
   return (
     <main className="app">
@@ -16,11 +17,14 @@ function App() {
 
       {error && <p className="app__error">{error}</p>}
 
-      {!loading && !error && results.length === 0 && (
+      {!loading && !error && !hasSearched && (
         <p className="app__empty">Search for a recipe to get started.</p>
       )}
 
-      <RecipeList recipes={results} />
+      <RecipeList
+        recipes={results}
+        searchedQuery={hasSearched ? lastQuery : null}
+      />
     </main>
   );
 }
